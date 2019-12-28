@@ -1,4 +1,4 @@
-requirejs(["p5"], function (p5) {
+requirejs(["libs/p5.min"], function (p5) {
   let myP5 = new p5(function (sketch) {
     const canvasWidth = 800;
     const canvasHeight = 800;
