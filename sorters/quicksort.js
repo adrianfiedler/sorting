@@ -32,7 +32,6 @@ define(function () {
         while (i < rechts && this.list[i] < pivot) {
           i++;
         }
-        console.log(`found first i: ${i}`);
 
         while (j > links && this.list[j] >= pivot) {
           j--;
@@ -42,12 +41,10 @@ define(function () {
           this.list[i] = this.list[j];
           this.list[j] = temp;
         }
-        console.log(`found first j: ${j}`);
       } while (i < j)
       let temp = this.list[i];
       this.list[i] = pivot;
       this.list[rechts] = temp;
-      console.log(`teiler: ${i}`);
       return i;
     }
   }
