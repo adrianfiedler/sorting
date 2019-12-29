@@ -1,12 +1,8 @@
-
-define(['libs/material-components-web.min.js'], function (mdc) {
-  mdc.ripple.MDCRipple.attachTo(document.querySelector('.menu-button'));
-
-  function handleMenuButton () {
-    const menu = new mdc.menu.MDCMenu(document.querySelector('.mdc-menu'));
-    menu.open = true;
-  }
-  document.querySelector('#menuButton').addEventListener('click', handleMenuButton)
+define(['js/libs/material-components-web.min'], function (mdc) {
+  const foos = [].map.call(document.querySelectorAll('.mdc-button'), function (element) {
+    mdc.ripple.MDCRipple.attachTo(element);
+  });
+  // mdc.ripple.MDCRipple.attachTo(document.querySelectorAll('.mdc-button'));
 })
 
 

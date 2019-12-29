@@ -1,4 +1,8 @@
-define(['libs/p5.min', 'sorters/quicksort'], function (p5, QuickSort) {
+require.config({
+  baseUrl: "/"
+});
+require(['js/libs/p5.min', 'js/sorters/quicksort', 'js/uicomponents'], function (p5, QuickSort, uicomps) {
+
   new p5(function (sketch) {
     const canvasWidth = window.innerWidth;
     const canvasHeight = 600;
