@@ -1,27 +1,28 @@
 <html>
 
 <head>
-  <script data-main="/js/mergesort-demo" src="/js/libs/require.min.js"></script>
-  <link href="/css/material-components-web.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/material.icons.css">
+  <script data-main="../js/mergesort-demo" src="../js/libs/require.min.js"></script>
+  <link rel="stylesheet" href="../css/material-components-web.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/material.icons.css">
 </head>
 
 <body style="margin: 0px">
   <header class=" mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <a href="/" class="mdc-theme--on-secondary mdc-button">
+        <a href="../index.html" class="mdc-theme--on-secondary mdc-button">
           <span class="mdc-button__ripple"></span>
           <i class="material-icons mdc-button__icon">home</i>
         </a>
-        <span class="mdc-top-app-bar__title">MergeSort</span>
+        <span class="mdc-top-app-bar__title">mergeSort</span>
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-        <a href="/pages/quicksort.html" class="mdc-theme--on-secondary mdc-button mdc-button--raised">
+        <a href="./quicksort.html" class="mdc-theme--on-secondary mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           QuickSort
         </a>
-        <a href="/pages/mergesort.html" class="mdc-theme--on-secondary mdc-button mdc-button--raised">
+        <a href="" class="mdc-theme--on-secondary mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           MergeSort
         </a>
@@ -30,9 +31,53 @@
       </section>
     </div>
   </header>
-  <div class="mdc-top-app-bar--fixed-adjust">
-    <div style="padding: 10px" id="sketchDiv">
+  <div class="mdc-top-app-bar--fixed-adjust mdc-layout-grid">
+    <div class="mdc-layout-grid__inner" style="padding-top: 24px">
+      <div class="mdc-layout-grid__cell--span-12" style="font-family: Roboto, sans-serif;">
+      </div>
+      <div
+        class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: start;">
+          <div>
+            <div class="mdc-text-field text-field mdc-text-field--outlined">
+              <input type="text" id="size-input" class="mdc-text-field__input" value="40"
+                aria-describedby="size-input-helper-text">
+              <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+                <div class="mdc-notched-outline__leading">
+                </div>
+                <div class="mdc-notched-outline__notch">
+                  <label class="mdc-floating-label" for="size-input">Data size</label></div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="mdc-text-field text-field mdc-text-field--outlined" style="margin-top: 10px">
+              <input type="text" id="ms-input" class="mdc-text-field__input" value="100"
+                aria-describedby="ms-input-helper-text">
+              <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+                <div class="mdc-notched-outline__leading">
+                </div>
+                <div class="mdc-notched-outline__notch">
+                  <label class="mdc-floating-label" for="ms-input">Delay (ms)</label></div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button id="sort-start" class="mdc-button mdc-button--raised" style="margin-top: 10px">
+              <span class="mdc-button__ripple"></span>
+              Sort me!
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
+        <div id="sketch-div"></div>
+      </div>
     </div>
+
   </div>
 </body>
 

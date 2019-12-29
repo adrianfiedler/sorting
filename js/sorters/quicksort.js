@@ -3,7 +3,7 @@ define(function () {
   class QuickSort {
 
     constructor() {
-      this.delay = 500;
+      this.delay = 100;
     }
     sort (list, doneCallback) {
       this.list = list;

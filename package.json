@@ -21,7 +21,9 @@
     "url": "https://github.com/adrianfiedler/sorting/issues"
   },
   "homepage": "https://github.com/adrianfiedler/sorting#readme",
-  "dependencies": {},
+  "dependencies": {
+    "eslint": "^6.8.0"
+  },
   "devDependencies": {
     "browser-sync": "^2.26.7"
   }
