@@ -1,4 +1,4 @@
-define(['js/libs/material-components-web.min'], function (mdc) {
+define(['libs/material-components-web.min'], function (mdc) {
   [].map.call(document.querySelectorAll('.mdc-button'), function (element) {
     mdc.ripple.MDCRipple.attachTo(element);
   });
