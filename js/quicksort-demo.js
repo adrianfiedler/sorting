@@ -1,7 +1,4 @@
-require.config({
-  baseUrl: "/"
-});
-require(['js/libs/p5.min', 'js/sorters/quicksort', 'js/uicomponents'], function (p5, QuickSort, uicomps) {
+require(['libs/p5.min', 'sorters/quicksort', 'uicomponents'], function (p5, QuickSort, uicomps) {
   let values = [];
   let qs = new QuickSort();
 
