@@ -12,14 +12,14 @@ define(function () {
       this.quicksort(0, this.list.length - 1);
     }
 
-    quicksort (links, rechts) {
-      if (links < rechts) {
-        const teiler = this.teile(links, rechts);
+    quicksort (left, right) {
+      if (left < right) {
+        const teiler = this.partition(left, right);
 
         let that = this;
         let timerId = setTimeout(function () {
-          that.quicksort(links, teiler - 1);
-          that.quicksort(teiler + 1, rechts);
+          that.quicksort(left, teiler - 1);
+          that.quicksort(teiler + 1, right);
           that.callStack.delete(timerId);
           if (that.doneCallback && that.callStack.size == 0) {
             that.doneCallback();
@@ -29,17 +29,17 @@ define(function () {
       }
     }
 
-    teile (links, rechts) {
-      let i = links;
-      let j = rechts - 1;
-      let pivot = this.list[rechts];
+    partition (left, right) {
+      let i = left;
+      let j = right - 1;
+      let pivot = this.list[right];
 
       do {
-        while (i < rechts && this.list[i] < pivot) {
+        while (i < right && this.list[i] < pivot) {
           i++;
         }
 
-        while (j > links && this.list[j] >= pivot) {
+        while (j > left && this.list[j] >= pivot) {
           j--;
         }
         if (i < j) {
@@ -50,7 +50,7 @@ define(function () {
       } while (i < j)
       let temp = this.list[i];
       this.list[i] = pivot;
-      this.list[rechts] = temp;
+      this.list[right] = temp;
       return i;
     }
   }
