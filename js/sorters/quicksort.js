@@ -2,11 +2,12 @@ define(function () {
 
   class QuickSort {
 
-    constructor(list, sortStepCompleted) {
-      this.list = list;
-      this.sortStepCompleted = sortStepCompleted;
+    constructor() {
     }
-    sort () {
+    sort (list, doneCallback) {
+      this.list = list;
+      this.doneCallback = doneCallback;
+      this.callStack = new Set();
       this.quicksort(0, this.list.length - 1);
     }
 
@@ -15,12 +16,16 @@ define(function () {
         const teiler = this.teile(links, rechts);
 
         let that = this;
-        setTimeout(function () {
+        let timerId = setTimeout(function () {
           that.quicksort(links, teiler - 1);
           that.quicksort(teiler + 1, rechts);
+          that.callStack.delete(timerId);
+          if (that.doneCallback && that.callStack.size == 0) {
+            that.doneCallback();
+          }
         }, 500);
+        this.callStack.add(timerId);
       }
-
     }
 
     teile (links, rechts) {

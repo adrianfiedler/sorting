@@ -2,40 +2,69 @@ require.config({
   baseUrl: "/"
 });
 require(['js/libs/p5.min', 'js/sorters/quicksort', 'js/uicomponents'], function (p5, QuickSort, uicomps) {
+  let values = [];
+
+  let quickSortSizeInput = document.querySelector('#quicksort-size-input');
+  quickSortSizeInput.addEventListener('change', () => {
+    generateData(quickSortSizeInput.value)
+  });
+
+  let qs = new QuickSort();
+  document.querySelector('#quick-sort-start').addEventListener('click', () => {
+    if (qs) {
+      document.querySelector('#quick-sort-start').disabled = true;
+      qs.sort(values, sortIsDone);
+    }
+  });
+
+  function sortIsDone () {
+    console.log('DONE');
+    document.querySelector('#quick-sort-start').disabled = false;
+  }
+
+
+  function generateData (size) {
+    values = [];
+    for (let i = 0; i < size; i++) {
+      values.push(Math.random() * 400);
+    }
+  }
 
   new p5(function (sketch) {
-    const canvasWidth = window.innerWidth;
-    const canvasHeight = 600;
-    const squareSize = 20;
-    const cols = Math.floor(canvasWidth / squareSize);
-    const rows = Math.floor(canvasHeight / squareSize);
-    const values = [];
+
+    function createCanvas () {
+      let canvasDiv = document.querySelector('#quicksort-sketch-div');
+      const canvasWidth = canvasDiv.offsetWidth;
+      const canvasHeight = 600;
+
+      const canvas = sketch.createCanvas(canvasWidth, canvasHeight);
+    }
 
     function setup () {
-      const canvas = sketch.createCanvas(canvasWidth, canvasHeight);
-      for (let i = 0; i < cols; i++) {
-        values.push(Math.random() * 400);
-      }
       sketch.frameRate(2);
-      let qs = new QuickSort(values);
-      qs.sort();
+      generateData(40);
+
+      createCanvas();
     }
 
     function draw () {
+      let canvasDiv = document.querySelector('#quicksort-sketch-div');
+      const canvasWidth = canvasDiv.offsetWidth;
+      const squareSize = canvasWidth / values.length;
       sketch.clear();
-      for (let col = 0; col < cols; col++) {
-        const x = col * squareSize;
+      for (let i = 0; i < values.length; i++) {
+        const x = i * squareSize;
         const y = 0;
 
         sketch.fill(sketch.color(255, 255, 255));
         sketch.stroke(0);
         // For every column and row, a rectangle is drawn at an (x,y) location scaled and sized by videoScale.
-        sketch.rect(x, y, squareSize, values[col]);
+        sketch.rect(x, y, squareSize, values[i]);
       }
     }
 
     sketch.setup = setup;
     sketch.draw = draw;
 
-  }, 'sketchDiv');
+  }, 'quicksort-sketch-div');
 });

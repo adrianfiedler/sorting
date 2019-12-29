@@ -4,7 +4,7 @@
   "description": "Collection of sorting algorithms",
   "main": "index.js",
   "scripts": {
-    "dev": "browser-sync start --server --files 'js/*.js'",
+    "dev": "browser-sync start --server --files \"css/style.css\" \"js/**/*.js\" \"./**/*.html\" --ignore \"node_modules/*\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
