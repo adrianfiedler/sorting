@@ -3,6 +3,7 @@ define(function () {
   class QuickSort {
 
     constructor() {
+      this.delay = 500;
     }
     sort (list, doneCallback) {
       this.list = list;
@@ -23,7 +24,7 @@ define(function () {
           if (that.doneCallback && that.callStack.size == 0) {
             that.doneCallback();
           }
-        }, 500);
+        }, this.delay);
         this.callStack.add(timerId);
       }
     }

@@ -3,13 +3,18 @@ require.config({
 });
 require(['js/libs/p5.min', 'js/sorters/quicksort', 'js/uicomponents'], function (p5, QuickSort, uicomps) {
   let values = [];
+  let qs = new QuickSort();
 
   let quickSortSizeInput = document.querySelector('#quicksort-size-input');
   quickSortSizeInput.addEventListener('change', () => {
     generateData(quickSortSizeInput.value)
   });
 
-  let qs = new QuickSort();
+  let quickSortMsInput = document.querySelector('#quicksort-ms-input');
+  quickSortMsInput.addEventListener('change', () => {
+    qs.delay = quickSortMsInput.value;
+  });
+
   document.querySelector('#quick-sort-start').addEventListener('click', () => {
     if (qs) {
       document.querySelector('#quick-sort-start').disabled = true;
@@ -18,7 +23,6 @@ require(['js/libs/p5.min', 'js/sorters/quicksort', 'js/uicomponents'], function 
   });
 
   function sortIsDone () {
-    console.log('DONE');
     document.querySelector('#quick-sort-start').disabled = false;
   }
 
