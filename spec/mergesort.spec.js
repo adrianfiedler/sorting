@@ -5,6 +5,7 @@ describe('MergeSort suite', function () {
     this.sorter = new MergeSort(0);
   });
 
+  /*
   it('sorts empty input array []', async function () {
     let sortedList = await this.sorter.sort([]);
     expect(sortedList.length).toBe(0);
@@ -24,7 +25,7 @@ describe('MergeSort suite', function () {
       expect(compareArrays(sortedList, expectedArr)).toBe(true);
     });
   });
-
+  */
   function compareArrays (arr1, arr2) {
     if (arr1.length != arr2.length) {
       return false;
@@ -38,4 +39,5 @@ describe('MergeSort suite', function () {
     }
     return true;
   }
+
 });
