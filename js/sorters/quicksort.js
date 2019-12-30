@@ -20,7 +20,6 @@ define(function () {
         if (list.length == 0 || list.length == 1) {
           resolve(list);
         }
-        console.log('started');
         this.callStack = new Set();
         this.quicksort(0, this.list.length - 1);
       });
@@ -41,7 +40,6 @@ define(function () {
           }
         }, this.delay);
         this.callStack.add(timerId);
-        console.log(this.callStack);
       }
     }
 

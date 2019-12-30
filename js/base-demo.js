@@ -23,9 +23,9 @@ define(['libs/p5.min', 'uicomponents'], function (p5) {
         document.querySelector('#sort-start').disabled = true;
         if (this.sorter) {
 
-          function iterationObserver (data) {
+          const iterationObserver = function (data) {
             this.values = data;
-          }
+          };
           this.sorter.sort(this.values, iterationObserver).then((sortedList) => {
             this.values = sortedList;
             document.querySelector('#sort-start').disabled = false;
