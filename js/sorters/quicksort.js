@@ -1,31 +1,47 @@
+if (typeof define !== 'function') {
+  var define = require('amdefine')(module)
+}
 define(function () {
 
   class QuickSort {
 
-    constructor() {
-      this.delay = 100;
+    constructor(delay = 0) {
+      this.delay = delay;
     }
-    sort (list, doneCallback) {
+    sort (list, iterationObserver) {
       this.list = list;
-      this.doneCallback = doneCallback;
-      this.callStack = new Set();
-      this.quicksort(0, this.list.length - 1);
+      this.iterationObserver = iterationObserver;
+      return new Promise((resolve, reject) => {
+        this.resolve = resolve;
+        this.reject = reject;
+        if (!list) {
+          reject('list is undefined');
+        }
+        if (list.length == 0 || list.length == 1) {
+          resolve(list);
+        }
+        console.log('started');
+        this.callStack = new Set();
+        this.quicksort(0, this.list.length - 1);
+      });
     }
 
     quicksort (left, right) {
       if (left < right) {
         const teiler = this.partition(left, right);
-
-        let that = this;
-        let timerId = setTimeout(function () {
-          that.quicksort(left, teiler - 1);
-          that.quicksort(teiler + 1, right);
-          that.callStack.delete(timerId);
-          if (that.doneCallback && that.callStack.size == 0) {
-            that.doneCallback();
+        if (this.iterationObserver) {
+          this.iterationObserver(this.list);
+        }
+        let timerId = setTimeout(() => {
+          this.quicksort(left, teiler - 1);
+          this.quicksort(teiler + 1, right);
+          this.callStack.delete(timerId);
+          if (this.callStack.size == 0) {
+            this.resolve(this.list);
           }
         }, this.delay);
         this.callStack.add(timerId);
+        console.log(this.callStack);
       }
     }
 
@@ -47,7 +63,7 @@ define(function () {
           this.list[i] = this.list[j];
           this.list[j] = temp;
         }
-      } while (i < j)
+      } while (i < j);
       let temp = this.list[i];
       this.list[i] = pivot;
       this.list[right] = temp;

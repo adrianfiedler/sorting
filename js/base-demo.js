@@ -22,7 +22,14 @@ define(['libs/p5.min', 'uicomponents'], function (p5) {
       document.querySelector('#sort-start').addEventListener('click', () => {
         document.querySelector('#sort-start').disabled = true;
         if (this.sorter) {
-          this.sorter.sort(this.values, this.sortIsDone);
+
+          function iterationObserver (data) {
+            this.values = data;
+          }
+          this.sorter.sort(this.values, iterationObserver).then((sortedList) => {
+            this.values = sortedList;
+            document.querySelector('#sort-start').disabled = false;
+          });
         }
       });
 
@@ -62,13 +69,6 @@ define(['libs/p5.min', 'uicomponents'], function (p5) {
         sketch.draw = draw;
 
       }, config.canvasId);
-    },
-
-    sortIsDone: function (sortedList) {
-      if (sortedList) {
-        config.values = sortedList;
-      }
-      document.querySelector('#sort-start').disabled = false;
     },
 
     generateData: function (size) {

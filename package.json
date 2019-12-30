@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "browser-sync start --server --files \"css/style.css\" \"js/**/*.js\" \"./**/*.html\" --ignore \"node_modules/*\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine",
+    "debug": "node --inspect-brk node_modules/jasmine/bin/jasmine.js spec/quicksort.spec.js"
   },
   "repository": {
     "type": "git",
@@ -22,9 +23,11 @@
   },
   "homepage": "https://github.com/adrianfiedler/sorting#readme",
   "dependencies": {
+    "amdefine": "^1.0.1",
     "eslint": "^6.8.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.7"
+    "browser-sync": "^2.26.7",
+    "jasmine": "^3.5.0"
   }
 }
