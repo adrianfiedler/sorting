@@ -1,10 +1,10 @@
-define(['libs/p5.min', 'uicomponents'], function (p5) {
+define(['uicomponents', 'canvas-drawer'], function (uicomponents, CanvasDrawer) {
   let config = {
-    canvasId: 'sketch-div',
     initData: 40,
     values: [],
     // set in concrete sorter
     sorter: null,
+    canvasDrawer: new CanvasDrawer('sketch-canvas', 'canvas-parent'),
 
     init: function () {
       let sortSizeInput = document.querySelector('#size-input');
@@ -23,8 +23,10 @@ define(['libs/p5.min', 'uicomponents'], function (p5) {
         document.querySelector('#sort-start').disabled = true;
         if (this.sorter) {
 
+          let that = this;
           const iterationObserver = function (data) {
-            this.values = data;
+            that.values = data;
+            that.canvasDrawer.draw(data);
           };
           this.sorter.sort(this.values, iterationObserver).then((sortedList) => {
             this.values = sortedList;
@@ -34,41 +36,6 @@ define(['libs/p5.min', 'uicomponents'], function (p5) {
       });
 
       this.generateData(this.initData);
-      new p5(function (sketch) {
-
-        function createCanvas () {
-          let canvasDiv = document.querySelector(`#${config.canvasId}`);
-          const canvasWidth = canvasDiv.offsetWidth;
-          const canvasHeight = 600;
-
-          sketch.createCanvas(canvasWidth, canvasHeight);
-        }
-
-        function setup () {
-          sketch.frameRate(2);
-          createCanvas();
-        }
-
-        function draw () {
-          let canvasDiv = document.querySelector(`#${config.canvasId}`);
-          const canvasWidth = canvasDiv.offsetWidth;
-          const squareSize = canvasWidth / config.values.length;
-          sketch.clear();
-          for (let i = 0; i < config.values.length; i++) {
-            const x = i * squareSize;
-            const y = 0;
-
-            sketch.fill(sketch.color(255, 255, 255));
-            sketch.stroke(0);
-            // For every column and row, a rectangle is drawn at an (x,y) location scaled and sized by videoScale.
-            sketch.rect(x, y, squareSize, config.values[i]);
-          }
-        }
-
-        sketch.setup = setup;
-        sketch.draw = draw;
-
-      }, config.canvasId);
     },
 
     generateData: function (size) {
