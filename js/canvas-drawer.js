@@ -1,11 +1,9 @@
-define(['libs/p5.min'], function (p5) {
+define([], function () {
   class CanvasDrawer {
     constructor(canvasId, canvasParentID) {
       this.canvas = document.getElementById(canvasId);
       this.canvasParent = document.getElementById(canvasParentID);
 
-      this.canvas.style.width = '100%';
-      this.canvas.style.height = '100%';
       this.canvas.width = this.canvasParent.offsetWidth;
       this.canvas.height = 600
 
@@ -16,14 +14,13 @@ define(['libs/p5.min'], function (p5) {
     draw (values) {
       const canvasWidth = this.canvas.offsetWidth;
       const squareSize = canvasWidth / values.length;
-      sketch.clear();
+      var ctx = this.canvas.getContext("2d");
+      ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       for (let i = 0; i < values.length; i++) {
         const x = i * squareSize;
         const y = 0;
 
-        var ctx = this.canvas.getContext("2d");
-
-        ctx.fillStyle = "rgb(200,0,0)";
+        ctx.fillStyle = "#018786";
         ctx.fillRect(x, y, squareSize, values[i]);
       }
     }

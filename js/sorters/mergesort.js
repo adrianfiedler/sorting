@@ -70,6 +70,10 @@ define(function () {
       for (let index = left, i = 0; index <= right; index++ , i++) {
         this.list[index] = res[i];
       }
+      if (this.iterationObserver) {
+        this.iterationObserver(this.list);
+      }
+
     }
 
   }

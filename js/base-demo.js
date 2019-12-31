@@ -10,6 +10,7 @@ define(['uicomponents', 'canvas-drawer'], function (uicomponents, CanvasDrawer) 
       let sortSizeInput = document.querySelector('#size-input');
       sortSizeInput.addEventListener('change', () => {
         this.generateData(sortSizeInput.value);
+        this.canvasDrawer.draw(this.values);
       });
 
       let sortMsInput = document.querySelector('#ms-input');
@@ -36,6 +37,7 @@ define(['uicomponents', 'canvas-drawer'], function (uicomponents, CanvasDrawer) 
       });
 
       this.generateData(this.initData);
+      this.canvasDrawer.draw(this.values);
     },
 
     generateData: function (size) {
