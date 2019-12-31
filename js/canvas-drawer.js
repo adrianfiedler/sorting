@@ -21,7 +21,7 @@ define([], function () {
         const y = 0;
 
         ctx.fillStyle = "#018786";
-        ctx.fillRect(x, y, squareSize, values[i]);
+        ctx.fillRect(x, y, squareSize - 1, values[i]);
       }
     }
   }
