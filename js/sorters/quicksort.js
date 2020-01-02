@@ -15,10 +15,10 @@ define(function () {
         this.resolve = resolve;
         this.reject = reject;
         if (!list) {
-          reject('list is undefined');
+          return reject('list is undefined');
         }
         if (list.length == 0 || list.length == 1) {
-          resolve(list);
+          return resolve(list);
         }
         this.callStack = new Set();
         this.quicksort(0, this.list.length - 1);

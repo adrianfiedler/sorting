@@ -24,12 +24,11 @@ define(['uicomponents', 'canvas-drawer'], function (uicomponents, CanvasDrawer) 
         document.querySelector('#sort-start').disabled = true;
         if (this.sorter) {
 
-          let that = this;
           const iterationObserver = function (data) {
-            that.values = data;
-            that.canvasDrawer.draw(data);
+            this.values = data;
+            this.canvasDrawer.draw(data);
           };
-          this.sorter.sort(this.values, iterationObserver).then((sortedList) => {
+          this.sorter.sort(this.values, iterationObserver.bind(this)).then((sortedList) => {
             this.values = sortedList;
             document.querySelector('#sort-start').disabled = false;
           });

@@ -5,6 +5,14 @@ describe('QuickSort suite', function () {
     this.sorter = new QuickSort(0);
   });
 
+  it('sorts empty input', async function () {
+    try {
+      let sortedList = await this.sorter.sort();
+    } catch (e) {
+      expect(e).toBe('list is undefined');
+    }
+  });
+
   it('sorts empty input array []', async function () {
     let sortedList = await this.sorter.sort([]);
     expect(sortedList.length).toBe(0);

@@ -16,10 +16,10 @@ define(function () {
         this.resolve = resolve;
         this.reject = reject;
         if (!list) {
-          reject('list is undefined');
+          return reject('list is undefined');
         }
         if (list.length == 0 || list.length == 1) {
-          resolve(list);
+          return resolve(list);
         }
         this.mergesort(0, list.length - 1);
       });
@@ -32,22 +32,15 @@ define(function () {
       }
 
       const middle = Math.floor((left + right) / 2);
-      // let timerId = setTimeout(() => {
       this.merges++;
       this.mergesort(left, middle);
       this.mergesort(middle + 1, right);
 
       this.merge(left, middle, right);
       this.merges--;
-      // this.callStack.delete(timerId);
-      // if (this.callStack.size == 0) {
       if (this.merges == 0) {
         this.resolve(this.list);
       }
-
-      // }
-      // }, this.delay);
-      // this.callStack.add(timerId);
     }
 
     merge (left, middle, right) {
