@@ -3,8 +3,7 @@ define(function () {
 
   class MergeSort {
 
-    constructor(delay = 0) {
-      this.delay = delay;
+    constructor() {
     }
 
     sort (list, iterationObserver) {

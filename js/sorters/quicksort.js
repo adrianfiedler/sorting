@@ -5,8 +5,7 @@ define(function () {
 
   class QuickSort {
 
-    constructor(delay = 0) {
-      this.delay = delay;
+    constructor() {
     }
     sort (list, iterationObserver) {
       this.list = list;
@@ -38,7 +37,7 @@ define(function () {
           if (this.callStack.size == 0) {
             this.resolve(this.list);
           }
-        }, this.delay);
+        }, 0);
         this.callStack.add(timerId);
       }
     }

@@ -3,8 +3,7 @@ define(function () {
 
   class BubbleSort {
 
-    constructor(delay = 0) {
-      this.delay = delay;
+    constructor() {
     }
 
     sort (list, iterationObserver) {

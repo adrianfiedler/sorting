@@ -11,18 +11,35 @@ define([], function () {
       this.canvasHeight = 600;
     }
 
-    draw (values) {
-      const canvasWidth = this.canvas.offsetWidth;
+    draw (history, delay) {
+      return new Promise((resolve, reject) => {
+        for (let histIndex = 0; histIndex < history.length; histIndex++) {
+          setTimeout(() => {
+            this.drawSquares(this.canvas, history[histIndex], history[histIndex - 1]);
+            if (histIndex === history.length - 1) {
+              resolve();
+            }
+          }, histIndex * delay);
+        }
+      });
+    }
+
+    drawSquares (canvas, values, prevValues) {
+      const canvasWidth = canvas.offsetWidth;
+      var ctx = canvas.getContext("2d");
       const squareSize = canvasWidth / values.length;
-      var ctx = this.canvas.getContext("2d");
-      ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let i = 0; i < values.length; i++) {
         const x = i * squareSize;
         const y = 0;
-
-        ctx.fillStyle = "#018786";
+        if (prevValues && prevValues[i] !== values[i]) {
+          ctx.fillStyle = "#6200ee";
+        } else {
+          ctx.fillStyle = "#018786";
+        }
         ctx.fillRect(x, y, squareSize - 1, values[i]);
       }
+
     }
   }
   return CanvasDrawer;
