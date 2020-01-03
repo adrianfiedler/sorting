@@ -36,7 +36,9 @@ define(function () {
             sorted = false;
           }
         }
-        this.iterationObserver(this.list);
+        if (this.iterationObserver) {
+          this.iterationObserver(this.list);
+        }
       }
       this.resolve(this.list);
     }
