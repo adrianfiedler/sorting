@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <script data-main="../js/quicksort-demo" src="../js/libs/require.min.js"></script>
+  <script data-main="../js/bubblesort-demo" src="../js/libs/require.min.js"></script>
   <link rel="stylesheet" href="../css/material-components-web.min.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/material.icons.css">
@@ -15,10 +15,10 @@
           <span class="mdc-button__ripple"></span>
           <i class="material-icons mdc-button__icon">home</i>
         </a>
-        <span class="mdc-top-app-bar__title">QuickSort</span>
+        <span class="mdc-top-app-bar__title">BubbleSort</span>
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-        <a href="" class="mdc-theme--on-secondary mdc-button mdc-button--raised">
+        <a href="./quicksort.html" class="mdc-theme--on-secondary mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           QuickSort
         </a>
@@ -26,7 +26,7 @@
           <span class="mdc-button__ripple"></span>
           MergeSort
         </a>
-        <a href="./bubblesort.html" class="mdc-theme--on-secondary mdc-button mdc-button--raised">
+        <a href="" class="mdc-theme--on-secondary mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           BubbleSort
         </a>
@@ -36,12 +36,11 @@
   <div class="mdc-top-app-bar--fixed-adjust mdc-layout-grid">
     <div class="mdc-layout-grid__inner" style="padding-top: 24px">
       <div class="mdc-layout-grid__cell--span-12" style="font-family: Roboto, sans-serif;">
-        Quicksort has a time complexity of O(n log n) in average to sort n items. In the worst case it makes
-        O(n<sup>2</sup>) comparisons.<br />
-        The in-place version of quicksort has a space complexity of O(log n).<br />
-        Already sorted data will cause very slow sorting (O(n<sup>2</sup>)) because in this implementation the pivot is
-        chosen as the most right element (biggest element). So every iteration has only one element less.
-        <a href="https://en.wikipedia.org/wiki/Quicksort">Wikipedia</a>
+        BubbleSort has an average and worst-case time complexity of <code>O(n<sup>2</sup>)</code> to sort n items.<br />
+        Most sorting algorithms have substantially better worst-case or average complexity. Therefore, bubble
+        sort is not a practical sorting algorithm.<br />
+        The only use case to use BubbleSort could be to sort already sorted data after e.g. only one entry was inserted.
+        <a href="https://en.wikipedia.org/wiki/Bubble_sort">Wikipedia</a>
       </div>
       <div
         class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">

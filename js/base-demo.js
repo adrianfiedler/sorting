@@ -31,6 +31,7 @@ define(['uicomponents', 'canvas-drawer'], function (uicomponents, CanvasDrawer) 
           this.sorter.sort(this.values, iterationObserver.bind(this)).then((sortedList) => {
             this.values = sortedList;
             document.querySelector('#sort-start').disabled = false;
+            this.canvasDrawer.draw(this.values);
           });
         }
       });
