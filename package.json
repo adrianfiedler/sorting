@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "browser-sync start --server --files \"css/style.css\" \"js/**/*.js\" \"./**/*.html\" --ignore \"node_modules/*\"",
     "test": "jasmine",
-    "debug": "node --inspect-brk node_modules/jasmine/bin/jasmine.js spec/quicksort.spec.js"
+    "debug": "node --inspect-brk node_modules/jasmine/bin/jasmine.js spec/quicksort.spec.js",
+    "build": "npx r.js -o require.build.js",
+    "uglify": "npx minify dist/*.js -d dist"
   },
   "repository": {
     "type": "git",
@@ -24,9 +26,11 @@
   "homepage": "https://github.com/adrianfiedler/sorting#readme",
   "dependencies": {
     "amdefine": "^1.0.1",
-    "eslint": "^6.8.0"
+    "eslint": "^6.8.0",
+    "requirejs": "^2.3.6"
   },
   "devDependencies": {
+    "babel-minify": "^0.5.1",
     "browser-sync": "^2.26.7",
     "jasmine": "^3.5.0"
   }
